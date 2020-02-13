@@ -1,0 +1,14 @@
+.items-list {
+    margin-left: 10%;
+    padding-top: 1%;
+    color: brown;
+    margin-right: 10%;
+    
+
+}
+
+li {
+    list-style: none;
+    font-size: large;
+    border: 1px solid yellow;
+}

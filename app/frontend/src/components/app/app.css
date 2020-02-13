@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+html {
+    width: 100%;
+}
+
+.app {
+    width: 100%;
+}
+
+.main {
+    background-color:orange;
+    width: 80%;
+    align-items: center;
+    height: 1000px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
