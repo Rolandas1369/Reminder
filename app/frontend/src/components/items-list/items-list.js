@@ -16,10 +16,24 @@ export default class ItemsList extends Component {
             this.setState({ itemList: items.data})        
         });       
     }
+
+    deleteItem = (item) => {
+        console.log(item.id)
+        axios
+            .delete(`http://localhost:8000/items/${item.id}`)
+            .then(item = () => {this.refreshList()})
+    }
  
     componentDidMount = () => {
         this.getData()
     }
+
+    refreshList = () => {
+        axios
+          .get("http://localhost:8000/items/")
+          .then(res => this.setState({ itemList: res.data }))
+          .catch(err => console.log(err));
+      };
     
  
     get_items(items) {
@@ -31,7 +45,10 @@ export default class ItemsList extends Component {
                     <tr key={items[item].id + `tr`}>
                         <td key={items[item].id}>{items[item].name}</td>
                         <td key={items[item].id + `td`}>{items[item].related_to}</td>
+                        <td type="button" onClick={() => this.deleteItem(items[item])}>Delete</td>
+                        <td >Edit</td>
                     </tr>
+                    
                 
                 
   
@@ -61,6 +78,7 @@ export default class ItemsList extends Component {
                          </thead>
                         <tbody>
                             {items_list}
+                            
                         </tbody>
                     </table>
                 </div>
