@@ -28,9 +28,9 @@ export default class ItemsList extends Component {
             
             return (
                 
-                    <tr>
+                    <tr key={items[item].id + `tr`}>
                         <td key={items[item].id}>{items[item].name}</td>
-                        <td key={items[item].id}>{items[item].related_to}</td>
+                        <td key={items[item].id + `td`}>{items[item].related_to}</td>
                     </tr>
                 
                 
@@ -63,7 +63,6 @@ export default class ItemsList extends Component {
                             {items_list}
                         </tbody>
                     </table>
- 
                 </div>
             
         )

@@ -14,15 +14,16 @@ export default class App extends Component {
 
 
     state = {
-        
+  
     }
+
+
+
 
     addItem = (text) => {
 
         const newItem = {
-            label: text, 
-            important: false, 
-            id: this.maxId++
+            taskOrItem: text, 
         };
 
         this.setState(({todoData}) => {
@@ -46,7 +47,7 @@ export default class App extends Component {
                 <Header />
                 <div className="main">
                     <ItemsList />
-                    <ItemAddForm />  
+                    <ItemAddForm onItemAdded={this.addItem }/>  
                 </div>
             </div>
  
