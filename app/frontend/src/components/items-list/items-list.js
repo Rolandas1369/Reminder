@@ -28,10 +28,11 @@ export default class ItemsList extends Component {
             
             return (
                 
-                <tr>
-                    <td key={items[item].id}>{items[item].name}</td>
-                    <td key={items[item].id}>{items[item].related_to}</td>
-                </tr>
+                    <tr>
+                        <td key={items[item].id}>{items[item].name}</td>
+                        <td key={items[item].id}>{items[item].related_to}</td>
+                    </tr>
+                
                 
   
             );
@@ -51,8 +52,16 @@ export default class ItemsList extends Component {
         return (
             
                 <div className="items-list">
-                    <table cellpadding="0" cellspacing="0" border="0">
-                        {items_list}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Task or item</th>
+                                <th>Item or Task Related To</th>
+                            </tr>
+                         </thead>
+                        <tbody>
+                            {items_list}
+                        </tbody>
                     </table>
  
                 </div>
