@@ -10,6 +10,13 @@ export default class ItemAddForm extends Component {
         itemRelatedTo: ''
     }
 
+    // refreshList = () => {
+    //     axios
+    //       .get("http://localhost:8000/items/")
+    //       .then(res => this.setState({ itemList: res.data }))
+    //       .catch(err => console.log(err));
+    // };
+
     onSubmit = (e) => {
         e.preventDefault()
         const data = { 
@@ -20,7 +27,10 @@ export default class ItemAddForm extends Component {
         axios
             .post("http://localhost:8000/items/", data)
             .then(res => console.log(res))
+            .then(this.props.refreshList())
             .catch(err => console.log(err));
+        
+        
 
         console.log(this.state.taskOrItem)
         console.log(this.state.itemRelatedTo)
@@ -28,8 +38,8 @@ export default class ItemAddForm extends Component {
     }
 
 
-
     onLabelChange = (e) => {
+        
         this.setState({
             // label that is updated in state
             taskOrItem: e.target.value,
@@ -48,12 +58,12 @@ export default class ItemAddForm extends Component {
            <div className="item-add-form">
                 <form className="item-add-form"
                    onSubmit={this.onSubmit}    >
-                    <input type="text" 
+                    <input type="text" className="taskField"
                         value={this.state.taskOrItem}
                         onChange={this.onLabelChange}
                         placeholder="Task"
                         />
-                    <input type="text"
+                    <input type="text" className="relatedField"
                         value={this.state.itemRelatedTo}
                         onChange={this.onNextChange}
                         placeholder="Related"

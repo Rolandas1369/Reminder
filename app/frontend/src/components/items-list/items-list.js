@@ -1,53 +1,53 @@
 import React, { Component } from 'react';
 
-import axios from "axios";
+
 
 import './items-list.css'
 
+
+const EditField = (props) => {
+    return (
+        <tr>
+            <td>hel;l=</td>
+        </tr>
+    )
+}
+
 export default class ItemsList extends Component {
 
+    
+
     state = {
-        itemList: {}
+        itemList: ''
     };
 
-    getData = () => {
-        axios.get("http://localhost:8000/items/")
-        .then((items) => { 
-            this.setState({ itemList: items.data})        
-        });       
-    }
-
-    deleteItem = (item) => {
-        console.log(item.id)
-        axios
-            .delete(`http://localhost:8000/items/${item.id}`)
-            .then(item = () => {this.refreshList()})
-    }
- 
-    componentDidMount = () => {
-        this.getData()
-    }
-
-    refreshList = () => {
-        axios
-          .get("http://localhost:8000/items/")
-          .then(res => this.setState({ itemList: res.data }))
-          .catch(err => console.log(err));
-      };
     
  
     get_items(items) {
+
+
+        const edit = this.props.editValue
+
+        console.log(edit)
+
+        
+
+        
+        const x = edit ? <EditField /> : null;
+        
 
         return Object.keys(items).map((item) => {
             
             return (
                 
-                    <tr key={items[item].id + `tr`}>
+                    <tr key={items[item].id + `tr`} id={items[item].id + `tr`}>
                         <td key={items[item].id}>{items[item].name}</td>
                         <td key={items[item].id + `td`}>{items[item].related_to}</td>
-                        <td type="button" onClick={() => this.deleteItem(items[item])}>Delete</td>
-                        <td >Edit</td>
+                        <td onClick={() => this.props.deleteItem(items[item])}>Delete</td>
+                        <td onClick={() => this.props.editItem(items[item])}>Edit</td>
+                        
                     </tr>
+                    
                     
                 
                 
@@ -61,10 +61,11 @@ export default class ItemsList extends Component {
 
     render() {
 
-        const items = this.state.itemList
+        const items = this.props.itemList
+
         const items_list = this.get_items(items)
 
-        console.log("kur cia", this.state.itemList)
+        
 
         return (
             
@@ -78,6 +79,8 @@ export default class ItemsList extends Component {
                          </thead>
                         <tbody>
                             {items_list}
+                            <EditField />
+                            
                             
                         </tbody>
                     </table>
